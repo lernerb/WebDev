@@ -1,22 +1,30 @@
 <?php
-$cs4450_project="Steam Photo Sharer";
+define("CS4450_PROJECT", "Steam Photo Sharer");
 require("settings.php");
 include("header.php");
 
 ?>
 
-<div id="cray">
+<div id="datshitcray">
 
 	<?php
-	# Logging in with Steam accounts requires setting special identity, so this example shows how to do it.
 	require('./includes/auth.php');
 	try {
 	    $openid = new LightOpenID($SITE_HOST);
+	    $isValid = $openid->validate();
 
-	    if ((!$openid->mode) || (!$openid->validate()) || ($openid->mode == 'cancel')){
+	    if ((!$openid->mode) || 
+	    	($isValid == false) || 
+	    	($openid->mode == 'cancel')) {
     		?>
-			<form action="login.php" method="POST">
+			<form action="/login.php?login" method="get">
 			    <button>Login with Steam</button>
+			    <input type="hidden" name="login" value="yesplease" />
+			    <?php
+			    if (isset($_GET['back'])){
+			    	?><input type="hidden" name="back" value="<?php echo $_GET['back']; ?>" /><?php
+			    }
+			    ?>
 			</form>
 			<?php
 	    }
@@ -29,7 +37,16 @@ include("header.php");
 	    } elseif($openid->mode == 'cancel') {
 	        echo 'User has canceled authentication!';
 	    } else {
-	        echo 'User ' . ($openid->validate() ? $openid->identity . ' has ' : 'has not ') . 'logged in.';
+	    	if ($isValid){
+	    		echo "Logged in..." . $openid->identity;
+
+	    		if (isset($_GET['back'])){
+	    			header('Location: ' .  $_GET['back']);
+	    		}
+	    	} else {
+	    		echo "User not logged in.";
+	    	}
+	        //echo 'User ' . ($openid->validate() ? $openid->identity . ' has ' : 'has not ') . 'logged in.';
 	    }
 	} catch(ErrorException $e) {
 	    echo $e->getMessage();

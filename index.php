@@ -5,7 +5,7 @@ include("header.php");
 
 ?>
 
-Page coming soon<br><br>
+INDEX PAGE BITCH.<br><br>
 
 
 
