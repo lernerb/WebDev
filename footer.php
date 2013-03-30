@@ -1,5 +1,8 @@
-	<footer>
-		This is the footer<br>
+	<div class="push"></div>
+	</div><!-- close #mainContent-->
+</div> <!-- close #pageWrapper -->
+<footer>
+	<div id="footerWrapper">
 		<a href="http://steampowered.com">Powered by Steam&trade;</a>
 
 		<p>Follow Us</p>
@@ -17,12 +20,12 @@
 		<?php 
 
 		try {
-		    $openid = new LightOpenID($SITE_HOST);echo 'User ' . ($openid->validate() ? $openid->identity . ' has ' : 'has not ') . 'logged in.';
+		    echo 'User ' . ($openid->isValid ? $openid->identity . ' has ' : 'has not ') . 'logged in.';
 
 		} catch(ErrorException $e) {
 		    echo $e->getMessage();
 		}?>
-		</footer>
 	</div>
+</footer>
 </body>
 </html>

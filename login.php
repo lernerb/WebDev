@@ -35,6 +35,8 @@ include("header.php");
 	    	if ($openid->isValid){
 	    		echo "Logged in..." . $openid->identity;
 
+	    		var_dump($openid->getAttributes());
+
 	    		if (isset($_GET['back'])){
 	    			header('Location: ' .  $_GET['back']);
 	    		}

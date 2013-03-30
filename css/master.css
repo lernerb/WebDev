@@ -2,6 +2,10 @@
 header('Content-type: text/css');
 
 if(preg_match('/(.*localhost.*)|(.*dev.*)/',$_SERVER['HTTP_HOST'])){
+	include("./reset.css");
+	include("./clearfix.css");
+	include("./stickyfooter.css");
+	include("./global.css");	
 	include("./../scripts/select2/select2-release-3.2/select2.css");
 }else{
 	include("./../scripts/select2/select2-release-3.2/select2.css");

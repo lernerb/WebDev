@@ -5,7 +5,7 @@ require('./includes/auth.php');
 
 try {
     $openid = new LightOpenID($SITE_HOST);
-    $isValid = $openid->validate();
+    $openid->validate();
 } catch(ErrorException $e) {
     echo $e->getMessage();
 }
@@ -34,7 +34,10 @@ try {
 </head>
 <body>
 	<div id="pageWrapper">
-		<header>
-			
-			This is the header
-		</header>
+		<div id="headerWrapper">
+			<header>
+				
+				<a href="/" id="logo">&nbsp;</a>
+			</header>
+		</div>
+		<div id="mainContent">

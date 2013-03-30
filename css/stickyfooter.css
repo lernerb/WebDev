@@ -1,0 +1,26 @@
+/* sticky footer - http://ryanfait.com/resources/footer-stick-to-bottom-of-page/ */
+html,body{
+    height: 100%; /* req'd for sticky footer */
+}
+#pageWrapper{
+    min-height:100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -100px;
+}
+.push{
+    height: 100px;
+}
+footer{
+    height: 100px; /*height - border - padding = 100 - 3 - 10 = 87*/
+    background: #111;
+    color:#333;
+}
+footer #footerWrapper{
+	margin: 0 auto;
+	padding-top: 10px;
+	width: 960px;
+}
+footer a{
+	color:#444;
+}
