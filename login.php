@@ -1,6 +1,4 @@
 <?php
-define("CS4450_PROJECT", "Steam Photo Sharer");
-require("settings.php");
 include("header.php");
 
 ?>
@@ -8,13 +6,10 @@ include("header.php");
 <div id="datshitcray">
 
 	<?php
-	require('./includes/auth.php');
 	try {
-	    $openid = new LightOpenID($SITE_HOST);
-	    $isValid = $openid->validate();
 
 	    if ((!$openid->mode) || 
-	    	($isValid == false) || 
+	    	($openid->isValid == false) || 
 	    	($openid->mode == 'cancel')) {
     		?>
 			<form action="/login.php?login" method="get">
@@ -37,7 +32,7 @@ include("header.php");
 	    } elseif($openid->mode == 'cancel') {
 	        echo 'User has canceled authentication!';
 	    } else {
-	    	if ($isValid){
+	    	if ($openid->isValid){
 	    		echo "Logged in..." . $openid->identity;
 
 	    		if (isset($_GET['back'])){

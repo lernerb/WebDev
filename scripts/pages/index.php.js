@@ -1,0 +1,3 @@
+$(function() { 
+	$("#gamesList").select2(); 
+});
