@@ -2,6 +2,7 @@
 define("CS4450_PROJECT", "Steam Photo Sharer");
 require("settings.php");
 require('./includes/auth.php');		
+require("./includes/steamgames.php");
 
 try {
     $openid = new LightOpenID($SITE_HOST);

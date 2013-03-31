@@ -1,20 +1,22 @@
 <?php
 include("header.php");
-require("./includes/steamgames.php");
 ?>
 
-INDEX PAGE BITCH.<br><br>
+GO TO GAME<br><br>
 
+	<form action="/viewPhotos.php" method="get">
+		<select id="gamesList" name="gameid">
+			<option></option>
+			<?php
+			foreach ($steamGames as $gameID => $gameName) {
 
-    <select id="gamesList">
-		<option></option>
-    	<?php
-    	foreach ($steamGames as $gameID => $gameName) {
+				?><option value="<?php echo $gameID;?>"><?php echo $gameName?></option><?php
+			}
+			?>
+		</select>
 
-    		?><option value="<?php echo $gameID;?>"><?php echo $gameName?></option><?php
-    	}
-    	?>
-    </select>
+		<input type="submit"/>
+	</form>
 
 
 <?php

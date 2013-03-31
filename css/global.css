@@ -32,7 +32,9 @@ body{
     display: block;
     margin: 0;
 }
-
+a#logo{
+    text-decoration: none;
+}
 #mainContent{
     width: 960px;
     background: #222;
