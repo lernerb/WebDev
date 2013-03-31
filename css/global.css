@@ -4,6 +4,14 @@ body{
     font: 14px 'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
+p{
+    display:block;
+    margin-bottom:1em;
+}
+p:last-child{
+    margin-bottom:0;
+}
+
 #pageWrapper{
     background: #393836; /* Old browsers */
     background: -moz-linear-gradient(top,  #393836 0%, #262626 150px); /* FF3.6+ */
