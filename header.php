@@ -52,7 +52,9 @@ try {
 								foreach ($steamGames as $gameID => $gameName) {
 
 									?><option value="<?php echo $gameID;?>"<?php
-										if ($gameID == $_GET["gameid"]){
+										if (isset($_GET["gameid"]) &&
+											$_GET["gameid"] !== "" &&
+											$gameID == $_GET["gameid"]){
 											echo " selected";
 										}
 									?>><?php echo $gameName?></option><?php
