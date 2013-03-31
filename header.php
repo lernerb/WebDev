@@ -35,9 +35,34 @@ try {
 </head>
 <body>
 	<div id="pageWrapper">
-		<div id="headerWrapper">
+		<div id="headerWrapper" class="cf">
 			<header>
-				
+				<div id="headerLinks" class="cf">
+					<div id="login">
+						<a  id="loginBtn" >
+							<img src="/img/sits_small.png" alt="Login"/>
+						</a>
+					</div>
+
+					<div id="search">
+						<form action="/viewPhotos.php" method="get">
+							<select id="gamesList" name="gameid">
+								<option></option>
+								<?php
+								foreach ($steamGames as $gameID => $gameName) {
+
+									?><option value="<?php echo $gameID;?>"><?php echo $gameName?></option><?php
+								}
+								?>
+							</select>
+
+							<input type="submit" value="Go"/>
+						</form>
+					</div>
+					
+
+				</div>
+
 				<a href="/" id="logo">&nbsp;</a>
 			</header>
 		</div>

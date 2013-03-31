@@ -32,9 +32,33 @@ body{
     display: block;
     margin: 0;
 }
+
 a#logo{
     text-decoration: none;
 }
+
+header #headerLinks{
+    float:right;
+    margin:17px 0;
+    vertical-align: middle;
+}
+#headerLinks #search{
+    float:right;
+    margin-right:20px;
+    display:inline-block;
+}
+#headerLinks #login{
+    float:right;
+    height:23px;
+    width:154px;
+    margin-top:5px;
+    display: inline-block;
+}
+#headerLinks #login a{
+    text-decoration: none;
+    cursor: hand;
+}
+
 #mainContent{
     width: 960px;
     background: #222;
@@ -46,4 +70,7 @@ a#logo{
     -webkit-border-radius: 0 0 10px 10px;
     -moz-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
+}
+#s2id_gamesList{
+    width:200px;
 }

@@ -2,7 +2,7 @@
 include("header.php");
 
 do{
-if(!isset($_GET['gameid'])){
+if(!isset($_GET['gameid']) || $_GET['gameid']==""){
 	echo "You must select a game!";
 	break;
 }
