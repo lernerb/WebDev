@@ -51,7 +51,11 @@ try {
 								<?php
 								foreach ($steamGames as $gameID => $gameName) {
 
-									?><option value="<?php echo $gameID;?>"><?php echo $gameName?></option><?php
+									?><option value="<?php echo $gameID;?>"<?php
+										if ($gameID == $_GET["gameid"]){
+											echo " selected";
+										}
+									?>><?php echo $gameName?></option><?php
 								}
 								?>
 							</select>
