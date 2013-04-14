@@ -15,37 +15,37 @@ require_once("header.php");
     if(isset($_GET['logout'])) {
         $auth->logout();
         if (isset($_GET['back'])){
-			header('Location: ' .  $_GET['back']);
-		}	
+            header('Location: ' .  $_GET['back']);
+        }   
     }
 
     
     if ($auth->isLoggedIn()){ 
 
         if (isset($_GET['back'])){
-			header('Location: ' .  $_GET['back']);
-		}	
-    	?>
-        <form action="/login.php" method="get">
+            header('Location: ' .  $_GET['back']);
+        }   
+        ?>
+        <form action="/debug.php" method="get">
             <input type="submit" value="Logout" />
             <input type="hidden" name="logout" value="yesplease" />
-		    <?php
-		    if (isset($_GET['back'])){
-		    	?><input type="hidden" name="back" value="<?php echo $_GET['back']; ?>" /><?php
-		    }
-		    ?>
+            <?php
+            if (isset($_GET['back'])){
+                ?><input type="hidden" name="back" value="<?php echo $_GET['back']; ?>" /><?php
+            }
+            ?>
         </form>
     <?php
     } else { 
     ?>
-        <form action="/login.php" method="get">
+        <form action="/debug.php" method="get">
             <input type="submit" value="Login with steam" />
             <input type="hidden" name="login" value="yesplease" />
-		    <?php
-		    if (isset($_GET['back'])){
-		    	?><input type="hidden" name="back" value="<?php echo $_GET['back']; ?>" /><?php
-		    }
-		    ?>
+            <?php
+            if (isset($_GET['back'])){
+                ?><input type="hidden" name="back" value="<?php echo $_GET['back']; ?>" /><?php
+            }
+            ?>
         </form>
     <?php 
     }
@@ -59,7 +59,7 @@ require_once("header.php");
     <br><hr><br>
     <?php
     if ($auth->isLoggedIn()){
-    	var_dump ( $auth->getUserData());
+        var_dump ( $auth->getUserData());
     }
     ?>
 

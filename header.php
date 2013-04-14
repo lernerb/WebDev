@@ -1,20 +1,22 @@
 <?php 
 define("CS4450_PROJECT", "Steam Photo Sharer");
-require("settings.php");
-require('./includes/auth.php');		
-require("./includes/steamgames.php");
+require_once("./settings.php");
+require_once('./includes/auth.php');		
+require_once("./includes/steamgames.php");
 
-try {
-    $openid = new LightOpenID($SITE_HOST);
-    $openid->validate();
-} catch(ErrorException $e) {
-    echo $e->getMessage();
-}
+// try {
+//     $openid = new LightOpenID($SITE_HOST);
+//     $openid->validate();
+// } catch(ErrorException $e) {
+//     echo $e->getMessage();
+// }
+
+
 ?>
 
 <html>
 <head>
-	<title>CS 4550 Final Project</title>
+	<title><?php echo $SITE_NAME ?></title>
 	<meta name="description" content="Here you can see photos that your friends have posted from steam games! This is our final for CS4550">
 	<meta name="keywords" content="Steam Photo Share, cs4550, northeastern web dev, brandon lerner, nathan heaps">
 	<meta name="author" content="Nathan Heaps and Brandon Lerner">
@@ -38,11 +40,19 @@ try {
 		<div id="headerWrapper" class="cf">
 			<header>
 				<div id="headerLinks" class="cf">
-					<div id="login">
-						<a  id="loginBtn" >
-							<img src="/img/sits_small.png" alt="Login"/>
-						</a>
-					</div>
+					<?php if ($auth->isLoggedIn()){ ?>
+						Hello, <?php echo $auth->getUserData()->steamID ?><br>
+						<a class="logoutBtn" href="javascript:void();">Logout</a>
+
+					<?php } else { ?>
+
+						<div id="login">
+							<a  class="loginBtn" >
+								<img src="/img/sits_small.png" alt="Login"/>
+							</a>
+						</div>
+
+					<?php } ?>
 
 					<div id="search">
 						<form action="/viewPhotos.php" method="get">
