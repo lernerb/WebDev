@@ -8,9 +8,11 @@ if(preg_match('/(.*localhost.*)|(.*dev.*)/', $_SERVER['HTTP_HOST'])){
 }
 
 ?>
+$(function(){
+    $("#upload").fineUploader({
+        request:{
+            endpoint: '/includes/upload.php'
+        }
+    });
 
-$("#upload").fineUploader({
-    request:{
-        endpoint: '/uploads/index.php'
-    }
-})
+});
