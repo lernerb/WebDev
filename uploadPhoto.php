@@ -8,6 +8,9 @@ if ($auth->isLoggedIn()){
 
 UPLOAD FORM HERE
 
+<div id="upload"></div>
+
+
 <?php } else {  ?>
 
 
