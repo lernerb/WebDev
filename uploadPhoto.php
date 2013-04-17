@@ -10,26 +10,65 @@ if ($auth->isLoggedIn()){
 
         $v = new validate();
 
-        $v->validateStr($_POST['photo_unique_id'],"photo ID", 11, 11);
-        $v->validateStr($_POST['photo_uploader_id'], "user ID", 6, 15);
+        $v->validateStr($_POST['photo_unique_id'],"photo ID", 13, 13);
+        $v->validateStr($_POST['photo_uploader_id'], "user ID", 6, 20);
         $v->validateStr($_POST['photo_name'], "photo name", 1, 324);
         $v->validateStr($_POST['photo_desc'], "photo description", 0, 1024);
-        $v->validateInArr($_POST['photo_game_id'], "game", $steamGames);
+        $v->validateKeyInArr($_POST['photo_game_id'], "game", $steamGames);
 
         if ($v->hasErrors()){
             ?>
                 <script type="text/javascript">
                 var hasErrors=true;
                 <?php if (isset($_POST['photo_unique_id']) && !empty($_POST['photo_unique_id'])){ ?>
-                var photo_id = <?php echo $_POST['photo_unique_id']; ?>;
+                var photo_unique_id = "<?php echo $_POST['photo_unique_id']; ?>";
+                <?php }  
+                if (isset($_POST['photo_game_id']) && !empty($_POST['photo_game_id'])){ ?>
+                var photo_game_id = "<?php echo $_POST['photo_game_id']; ?>";
+                <?php }  
+                if (isset($_POST['photo_name']) && !empty($_POST['photo_name'])){ ?>
+                var photo_name = "<?php echo $_POST['photo_name']; ?>";
+                <?php }  
+                if (isset($_POST['photo_desc']) && !empty($_POST['photo_desc'])){ ?>
+                var photo_desc = "<?php echo $_POST['photo_desc']; ?>";
                 <?php }  ?>
+                var errorListHTML = "<?php echo addslashes($v->displayErrors()); ?>";
                 </script>
             <?php
+        } else {
+            echo '<script type="text/javascript">
+                var hasErrors=false;</script>';
+            //open up a connection to the DB, save it and redirect to the photo page
+            $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD, $DB_NAME);
+            /* check connection */
+            if (mysqli_connect_errno()) {
+                die("Connection to database failed:" . mysqli_connect_error());
+                exit();
+            }
+            $stmt = $mysqli->prepare($queryArray['insertPhotoToDB']);
+            $stmt->bind_param('siiss', 
+                              $_POST['photo_unique_id'], 
+                              $_POST['photo_uploader_id'], 
+                              $_POST['photo_game_id'],
+                              $_POST['photo_name'],
+                              $_POST['photo_desc']);
+            $stmt->execute();
+
+            if ( $stmt->affected_rows == 0 ){
+                echo "Failed to insert row into database";
+            } else {
+                //close the connection and navigate to the page!
+                $photo_id = $mysqli->insert_id;
+                $stmt->close();
+
+                header('Location: /viewPhoto.php?photo_id=' . $photo_id);
+            }
+
         }
 
 
 
-    } else {
+    }
     ?>
 
     <div id="step1">
@@ -63,7 +102,7 @@ if ($auth->isLoggedIn()){
         </form>
     </div>
 
-    <?php }
+    <?php 
 } else {  ?>
 
 

@@ -39,8 +39,18 @@ $(function(){
 
     $("#photo_game_id").select2();
 
-    if (hasErrors && photo_id){
-        showStepTwo(photo_id);
+    if (typeof hasErrors !== 'undefined' && hasErrors && photo_unique_id){
+        showStepTwo(photo_unique_id);
+
+        var fields = ["photo_game_id", "photo_name", "photo_desc"];
+        for (var field in fields){
+            if(window[fields[field]] && window[fields[field]].length > 0){
+                var $e = $("#" + fields[field]);
+                $e.val(window[fields[field]]);
+            }
+        }
+
+        $("#errors").html(errorListHTML);
     }
 
 });

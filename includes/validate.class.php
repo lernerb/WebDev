@@ -37,16 +37,17 @@ class validate {
  
 
    /**
-  * Ensures a value is in an array
+  * Ensures a key is in an array
   *
   * @access public
   * @param $postVal - the value of the $_POST request
   * @param $postName - the name of the form element being validated
   * @return void
   */
-  public function validateInArr($postVal, $postName, $inArr) {
-    if(!in_array($postVal, $inArr)) {
+  public function validateKeyInArr($postVal, $postName, $inArr) {
+    if(!isset($inArr[$postVal])) {
       $this->setError($postName, ucfirst($postVal)." is not a valid selection for ${postName}.");
+    }
   }// end validateInArr
 
    /**
@@ -61,7 +62,7 @@ class validate {
     if(strlen($postVal) < 1) {
       $this->setError($postName, ucfirst($postName)." Please enter a valid date.");
     }
-} 
+  } 
 
   /**
   * Validates an email address

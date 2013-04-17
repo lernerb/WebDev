@@ -12,8 +12,28 @@ if(!isset($_GET['gameid']) || $_GET['gameid']==""){
 You selected <?php
 echo $steamGames[$_GET['gameid']]; ?>
 
+<div id="images">
 
-<br><br>PHOTOS GO HERE!
+
+
+<?php
+
+$files = glob("uploads/*");
+for ($i=1; $i < count($files); $i++)
+{
+	
+	$num = $files[$i];
+	$str = basename($num);
+	print $num."<br />";
+	
+	echo '<a href="/viewPhoto.php?photo_id='.$str.'" title="We should replace this with the vf the image">';
+	echo '<img src="'.$num.'" alt="random image" />'."<br /><br />";
+}
+
+?>
+
+</a>
+
 
 <?php
 }while(false);
