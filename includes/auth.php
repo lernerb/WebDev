@@ -125,6 +125,30 @@ class Auth{
         $user = new SteamUser($_SESSION['user_id'], $this->api_key);
         return $user;
     }
+
+    /**
+     * Gets the user ID from the session variable
+     *
+     * @return int the logged in user's ID
+     */
+    function getUserId(){
+        if ($this->isLoggedIn() && isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+            return $_SESSION['user_id'];
+        }
+        return "";
+        
+    }
+
+    /**
+     * Translate's a user's ID to a user name
+     *
+     * @return string the specified user's username
+     */
+    function getUserName($id){
+        $user = new SteamUser($id, $this->api_key);
+        return $user->steamID;
+        
+    }
 }
 
 

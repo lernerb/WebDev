@@ -35,6 +35,20 @@ class validate {
     }
   }// end validateStr
  
+
+   /**
+  * Ensures a value is in an array
+  *
+  * @access public
+  * @param $postVal - the value of the $_POST request
+  * @param $postName - the name of the form element being validated
+  * @return void
+  */
+  public function validateInArr($postVal, $postName, $inArr) {
+    if(!in_array($postVal, $inArr)) {
+      $this->setError($postName, ucfirst($postVal)." is not a valid selection for ${postName}.");
+  }// end validateInArr
+
    /**
   * Validates a date to make sure a value is set
   *

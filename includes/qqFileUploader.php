@@ -100,12 +100,12 @@ class qqFileUploader {
 
         // Validate file extension
 
-        $pathinfo = pathinfo($name);
+        $pathinfo = pathinfo($_FILES[$this->inputName]["name"]);
         $ext = isset($pathinfo['extension']) ? $pathinfo['extension'] : '';
 
         if($this->allowedExtensions && !in_array(strtolower($ext), array_map("strtolower", $this->allowedExtensions))){
             $these = implode(', ', $this->allowedExtensions);
-            return array('error' => 'File has an invalid extension, it should be one of '. $these . '.');
+            return array('error' => 'File has an invalid extension ('.$ext.'), it should be one of '. $these . '.');
         }
 
         // Save a chunk
