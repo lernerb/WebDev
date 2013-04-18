@@ -60,6 +60,7 @@ if ($auth->isLoggedIn()){
                 //close the connection and navigate to the page!
                 $photo_id = $mysqli->insert_id;
                 $stmt->close();
+                $mysqli->close();
 
                 header('Location: /viewPhoto.php?photo_id=' . $photo_id);
             }

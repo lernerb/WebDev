@@ -1,28 +1,41 @@
 <?php
 include("header.php");
+require_once("./includes/queries.php");
 
 ?>
 
-Page coming soon<br><br>
-
-
-<?php
-echo $_GET['photo_id'];
-?>
 
 <div id="image">
-
+    
 <?php
+$mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD, $DB_NAME);
+/* check connection */
+if (mysqli_connect_errno()) {
+    die("Connection to database failed:" . mysqli_connect_error());
+    exit();
+}
+if ($stmt = $mysqli->prepare($queryArray['getPhotoByID'])){
+	$stmt->bind_param('i', $_GET['photo_id']); 
+    $stmt->execute();
+    $stmt->bind_result($id, $unique_id, $uploader_id, $game_id, $title, $description, $deleted, $uploaded, $modified);
 
-$str = $_GET['photo_id'];
-	
-echo '<a href="/viewPhoto.php?photo_id='.$str.'" title="We should replace this with the vf the image">';
-echo '<img src="/uploads/'.$str.'" alt="random image" />'."<br /><br />";
+    while ($stmt->fetch()) {
+        ?>
+            <a href="/viewPhoto.php?photo_id=<?php echo $id; ?>">
+                <img src = "/uploads/<?php echo $unique_id; ?>"/>
+            </a>
 
+        <?php
+    }
+
+    $stmt->close();
+
+}
+$mysqli->close();
 
 ?>
 
-</a>
+</div>
 
 
 

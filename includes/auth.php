@@ -69,6 +69,8 @@ class Auth{
                        $_SESSION['identity'],
                        $_SESSION['user_id']);
             $_SESSION['user_id']=$_SESSION['user_id']['id'];
+            $user = new SteamUser($_SESSION['user_id'], $this->api_key);
+            $_SESSION['user_name'] = $user->steamID;
 
 
             $_SESSION['logged_in']=true;
@@ -90,6 +92,7 @@ class Auth{
         unset ($_SESSION['logged_in']);
         unset ($_SESSION['identity']);
         unset ($_SESSION['user_id']);
+        unset ($_SESSION['user_name']);
 
         //restart the session so we can continue to use the $_SESSION variable
         $success &= session_destroy();
@@ -145,6 +148,9 @@ class Auth{
      * @return string the specified user's username
      */
     function getUserName($id){
+        if ($this->isLoggedIn() && isset($_SESSION['user_name']) && !empty($_SESSION['user_name'])){
+            return $_SESSION['user_name'];
+        }
         $user = new SteamUser($id, $this->api_key);
         return $user->steamID;
         
