@@ -1,0 +1,17 @@
+.page_info{
+    margin-bottom:5px;
+}
+
+.page_info .title{
+    font-size:24px;
+    font-weight:bold;
+}
+
+#link_list{
+    padding-left:30px;
+}
+
+
+#link_list ul a {
+    color: white;
+}

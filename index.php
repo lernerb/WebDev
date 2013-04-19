@@ -11,7 +11,7 @@ require_once("./includes/queries.php");
     </div>
 </div>
 
-<?php if ($auth->isLoggedIn()){ ?>
+<?php if (!$auth->isLoggedIn()){ ?>
 <p>
 	Welcome to Steam Photo Share. Here you can login with steam and 
 	share photos from your favorite moments in-game.

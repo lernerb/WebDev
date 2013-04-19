@@ -148,10 +148,7 @@ class Auth{
      * @return string the specified user's username
      */
     function getUserName($id){
-        if ($this->isLoggedIn() && isset($_SESSION['user_name']) && !empty($_SESSION['user_name'])){
-            return $_SESSION['user_name'];
-        }
-        $user = new SteamUser($id, $this->api_key);
+        $user = new SteamUser((string) $id, $this->api_key);
         return $user->steamID;
         
     }

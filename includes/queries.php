@@ -8,7 +8,7 @@ if (!defined("CS4450_PROJECT")){
 require_once("/settings.php");
 
 $queryArray = Array(
-    'getPhotoByID' => 'SELECT * FROM photos WHERE id = ?',
+    'getPhotoByID' => 'SELECT * FROM photos WHERE id = ? and deleted = "0"',
     'getMostRecentPhotos' => 'SELECT * FROM photos WHERE deleted = "0" ORDER BY id DESC Limit 0, '. $PICS_PER_PAGE,
     'getPhotosByGameID' => 'SELECT * FROM photos WHERE game_id = ? and deleted = "0" ORDER BY id DESC Limit ?, ?',
     'getTotalNumPhotos' => 'SELECT COUNT(*) FROM photos WHERE game_id = ? and deleted = "0"',

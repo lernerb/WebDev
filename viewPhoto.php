@@ -19,7 +19,8 @@ if ($stmt = $mysqli->prepare($queryArray['getPhotoByID'])){
     $stmt->execute();
     $stmt->bind_result($id, $unique_id, $uploader_id, $game_id, $title, $description, $deleted, $uploaded, $modified);
     //only need 1
-    $stmt->fetch()?>
+    $stmt->fetch();
+    $stmt->close();?>
     <div id="image_wrapper" class="cf">
         <?php
             if ($uploader_id == $auth->getUserId()){
@@ -27,6 +28,34 @@ if ($stmt = $mysqli->prepare($queryArray['getPhotoByID'])){
                     <div class="delete_btn btn red">Delete</div>
                 <?php
             }
+
+
+
+            //delete functionality
+            if (isset($_POST) && isset($_GET['delete']) && $_GET['delete'] == "true"){
+                echo "DELETING\nDELETING\nDELETING\nDELETING\n";
+                if ($auth->getUserId() == $uploader_id){
+                    if ($stmt = $mysqli->prepare($queryArray['deletePhotoByID'])){
+                        $stmt->bind_param('i', $_GET['photo_id']); 
+                        $stmt->execute();
+                        if ($stmt->affected_rows == 1){
+                            $stmt->close();
+                            $mysqli->close();
+                            ob_flush();
+                            flush();
+                            echo "<div id=\"response\">{\"success\":true, \"game_id\": ".$game_id."}</div>";
+                            exit();
+                            
+                        }
+                        
+                    }
+                }
+            }
+
+
+
+
+
         ?>
         <div class="title">
             <?php echo $title; ?>
@@ -46,7 +75,7 @@ if ($stmt = $mysqli->prepare($queryArray['getPhotoByID'])){
     </div>  
 
     <?php
-    $stmt->close();
+    
 
 }
 $mysqli->close();
