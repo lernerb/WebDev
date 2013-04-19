@@ -5,6 +5,13 @@ require_once("./includes/queries.php");
 
 ?>
 
+<div class="page_info">
+    <div class="title">
+        <?php echo "Recent Uploads" ?>
+    </div>
+</div>
+
+<?php if ($auth->isLoggedIn()){ ?>
 <p>
 	Welcome to Steam Photo Share. Here you can login with steam and 
 	share photos from your favorite moments in-game.
@@ -14,7 +21,9 @@ require_once("./includes/queries.php");
 	You must sign in with a Steam Community ID to upload, comment and rate photos. 
 </p>
 
-<div id="images">
+<?php } ?>
+
+<div id="images" class="cf">
 <?php
 $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD, $DB_NAME);
 /* check connection */
@@ -29,8 +38,13 @@ if ($stmt = $mysqli->prepare($queryArray['getMostRecentPhotos'])){
 
     while ($stmt->fetch()) {
         ?>
-            <a href="/viewPhoto.php?photo_id=<?php echo $id; ?>">
+             <a class="image" href="/viewPhoto.php?photo_id=<?php echo $id; ?>">
+
                 <img src = "/uploads/<?php echo $unique_id; ?>"/>
+                <div class="info">
+                    <div class="title"><?php echo $title; ?></div>
+                    <div class="author">By <?php echo $auth->getUserName( $uploader_id ); ?></div>
+                </div>
             </a>
 
         <?php
