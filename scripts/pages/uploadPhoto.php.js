@@ -35,7 +35,13 @@ $(function(){
         $("#step2").show();
     }
 
-    $("#photo_info").validate();
+    $("form#photo_info").validate({
+        ignore: null,
+        submitHandler: function(form){
+            $("input[type=submit]", form).attr({"disabled":"disabled", "value":"Submitting..."});
+            form.submit();
+        }
+    });
 
     $("#photo_game_id").select2();
 

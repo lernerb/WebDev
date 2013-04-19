@@ -1,12 +1,6 @@
 <?php
-require_once("header.php");
-
-?>
-
-<div id="datshitcray">
-    <?php 
-
-
+define("CS4450_PROJECT", "Steam Photo Sharer"); //i need dis so auth works and we login before the header renders it
+require_once('./includes/auth.php');    
 
     if(isset($_GET['login'])) {
         $auth->login();
@@ -19,6 +13,14 @@ require_once("header.php");
         }   
     }
 
+
+
+require_once("header.php");
+
+?>
+
+<div id="datshitcray">
+    <?php 
     
     if ($auth->isLoggedIn()){ 
 

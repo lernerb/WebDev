@@ -1,0 +1,36 @@
+#image_wrapper{
+    width:900px;
+    margin: 5px auto;
+}
+
+#image_wrapper .image{
+    margin: 2px auto;
+    text-align:center;
+
+}
+#image_wrapper .image img{
+    max-width:890px;
+    border: 5px solid #444;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+
+#image_wrapper .title{
+    font-size:24px;
+    font-weight: bold;
+}
+#image_wrapper .author{
+    font-size:16px;
+}
+#image_wrapper .adtl_info{
+    margin-top: 10px;
+}
+#image_wrapper .date{
+    font-size:12px;
+    font-style:italic;
+}
+#image_wrapper .delete_btn{
+    float:right;
+}

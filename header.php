@@ -1,5 +1,7 @@
 <?php 
-define("CS4450_PROJECT", "Steam Photo Sharer");
+if (!defined("CS4450_PROJECT")){
+	define("CS4450_PROJECT", "Steam Photo Sharer");
+}
 require_once("./settings.php");
 require_once('./includes/auth.php');		
 require_once("./includes/steamgames.php");
@@ -40,42 +42,49 @@ require_once("./includes/steamgames.php");
 		<div id="headerWrapper" class="cf">
 			<header>
 				<div id="headerLinks" class="cf">
-					<?php if ($auth->isLoggedIn()){ ?>
-						Hello, <?php echo $auth->getUserData()->steamID ?><br>
-						<a class="logoutBtn" href="javascript:void();">Logout</a>
+					<div class="link">
+					<div id="login">
+						<?php if ($auth->isLoggedIn()){ ?>
 
-					<?php } else { ?>
+							Hello, <?php echo $auth->getUserData()->steamID ?><br>
+							<a class="logoutBtn" href="javascript:void();">Logout</a>
 
-						<div id="login">
-							<a  class="loginBtn" >
+						<?php } else { ?>
+
+							<a class="loginBtn" >
 								<img src="/img/sits_small.png" alt="Login"/>
 							</a>
+							
+						<?php } ?>
 						</div>
-
-					<?php } ?>
-
-					<div id="search">
-						<form action="/viewPhotos.php" method="get">
-							<select id="gamesList" name="gameid">
-								<option></option>
-								<?php
-								foreach ($steamGames as $gameID => $gameName) {
-
-									?><option value="<?php echo $gameID;?>"<?php
-										if (isset($_GET["gameid"]) &&
-											$_GET["gameid"] !== "" &&
-											$gameID == $_GET["gameid"]){
-											echo " selected";
-										}
-									?>><?php echo $gameName?></option><?php
-								}
-								?>
-							</select>
-
-							<input type="submit" value="Go"/>
-						</form>
 					</div>
-					
+
+					<div class="link">
+						<a href="uploadPhoto.php" class="btn blue">Upload</a>		
+					</div>
+
+					<div class="link">
+						<div id="search">
+							<form action="/viewPhotos.php" method="get">
+								<select id="gamesList" name="gameid">
+									<option></option>
+									<?php
+									foreach ($steamGames as $gameID => $gameName) {
+
+										?><option value="<?php echo $gameID;?>"<?php
+											if (isset($_GET["gameid"]) &&
+												$_GET["gameid"] !== "" &&
+												$gameID == $_GET["gameid"]){
+												echo " selected";
+											}
+										?>><?php echo $gameName?></option><?php
+									}
+									?>
+								</select><!-- nospacinghere
+							--> <input type="submit" value="Go" class="btn blue"/>
+							</form>
+						</div>
+					</div>
 
 				</div>
 

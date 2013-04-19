@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `photos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `unique_id` varchar(13) NOT NULL,
-  `uploader_id` int(11) NOT NULL,
+  `uploader_id` bigint(64) NOT NULL,
   `game_id` int(11) NOT NULL,
   `title` varchar(1024) DEFAULT NULL,
   `description` text,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `photos` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`unique_id`),
   KEY `uploader_id` (`uploader_id`),
-  KEY `game_id` (`game_id`),
+  KEY `game_id` (`game_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

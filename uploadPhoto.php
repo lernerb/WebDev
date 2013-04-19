@@ -46,12 +46,15 @@ if ($auth->isLoggedIn()){
                 exit();
             }
             $stmt = $mysqli->prepare($queryArray['insertPhotoToDB']);
+
+            $escapedTitle = htmlspecialchars($_POST['photo_name']);
+            $escapedDesc = htmlspecialchars($_POST['photo_desc']);
             $stmt->bind_param('siiss', 
                               $_POST['photo_unique_id'], 
                               $_POST['photo_uploader_id'], 
                               $_POST['photo_game_id'],
-                              $_POST['photo_name'],
-                              $_POST['photo_desc']);
+                              $escapedTitle,
+                              $escapedDesc);
             $stmt->execute();
 
             if ( $stmt->affected_rows == 0 ){
@@ -84,7 +87,7 @@ if ($auth->isLoggedIn()){
             <input type="text" name="photo_name" id="photo_name" class="required" maxlength="324" minlength="1" size="50"/>
             <textarea name="photo_desc" id="photo_desc" class="required" maxlength="1024" minlength="1" cols="80" rows="5"></textarea>
 
-            <select id="photo_game_id" name="photo_game_id">
+            <select id="photo_game_id" name="photo_game_id" class="required" >
                 <option></option>
                 <?php
                 foreach ($steamGames as $gameID => $gameName) {

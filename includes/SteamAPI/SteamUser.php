@@ -66,7 +66,7 @@ class SteamUser {
 				return null;
 			}
 		} catch (Exception $e) {
-			//echo "Whoops! Something went wrong!\n\nException Info:\n" . $e . "\n\n";
+			//die("Whoops! Something went wrong!\n\nException Info:\n" . $e . "\n\n");
 			return null;
 		}
 
