@@ -45,7 +45,6 @@ require_once("./includes/steamgames.php");
 					<div class="link">
 					<div id="login">
 						<?php if ($auth->isLoggedIn()){ ?>
-
 							Hello, <?php echo $auth->getUserData()->steamID ?><br>
 							<a class="logoutBtn" href="javascript:void();">Logout</a>
 

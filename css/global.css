@@ -139,3 +139,12 @@ a.btn{
 .btn.blue { background-color:#4660A2;}
 .btn.red  { background-color:#FF4343;}
 .btn.green{ background-color:#75A633;}
+
+.page_info{
+    margin-bottom:5px;
+}
+
+.page_info .title{
+    font-size:24px;
+    font-weight:bold;
+}

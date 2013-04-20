@@ -1,7 +1,14 @@
 <?php
 include("header.php");
 
+?> 
 
+<div class="page_info">
+    <div class="title">Upload a new image</div>
+</div>
+
+
+<?php
 if ($auth->isLoggedIn()){
 
     if (isset($_POST) && isset($_POST['photo_unique_id']) && !empty($_POST['photo_unique_id'])){
@@ -84,8 +91,8 @@ if ($auth->isLoggedIn()){
             <img id="photo_img"/>
             <input type="hidden" name="photo_unique_id" id="photo_unique_id"/> 
             <input type="hidden" name="photo_uploader_id" id="photo_uploader_id" value="<?php echo $auth->getUserId() ?>"/>
-            <input type="text" name="photo_name" id="photo_name" class="required" maxlength="324" minlength="1" size="50"/>
-            <textarea name="photo_desc" id="photo_desc" class="required" maxlength="1024" minlength="1" cols="80" rows="5"></textarea>
+            <input type="text" name="photo_name" id="photo_name" class="required" maxlength="324" minlength="1" size="50" placeholder="Please enter a photo name here..."/>
+            <textarea name="photo_desc" id="photo_desc" class="required" maxlength="1024" minlength="1" cols="80" rows="5" placeholder="Please enter a description about your photo here..."></textarea>
 
             <select id="photo_game_id" name="photo_game_id" class="required" >
                 <option></option>
@@ -102,7 +109,7 @@ if ($auth->isLoggedIn()){
                 }
                 ?>
             </select>
-            <input type="submit" />
+            <input type="submit" name="upload_submit_button" id="upload_submit_button" class="btn green"/>
         </form>
     </div>
 

@@ -1,5 +1,54 @@
+
+
 #photo_img {
-text-align: center
+text-align: center;
+max-width: 400px;
+max-height: 400px;
+height: auto;
+width: auto;
+margin: 20px 35%;
+border: 5px solid #444;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
 }
 
+#photo_name {
+margin-left: 30%;
+margin-top: -14px;
+}
+
+.page_info .title {
+font-size: 24px;
+font-weight: bold;
+}
+
+.qq-upload-button {
+display: block;
+width: 100%;
+padding: 7px 0;
+text-align: center;
+background: #880000;
+border-bottom: 1px solid #DDD;
+color: #FFF;
+}
+
+#photo_desc {
+margin-bottom: 5px;
+margin-left: 12%;
+resize: none;
+}
+
+#s2id_photo_game_id {
+position: relative;
+vertical-align: top;
+padding-bottom: 20px;
+width: 665px;
+margin-left: 12%;
+}
+
+#upload_submit_button {
+margin-top: -10px;
+margin-left: 44%;
+}
 

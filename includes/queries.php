@@ -5,7 +5,7 @@
 if (!defined("CS4450_PROJECT")){
     die("hacking attempt");
 }
-require_once("/settings.php");
+require_once("./settings.php");
 
 $queryArray = Array(
     'getPhotoByID' => 'SELECT * FROM photos WHERE id = ? and deleted = "0"',

@@ -2086,7 +2086,7 @@ qq.FineUploader = function(o){
             disableDefaultDropzone: false
         },
         text: {
-            uploadButton: 'Upload a file',
+            uploadButton: 'Click here or drag a photo into the box below to upload a file!',
             cancelButton: 'Cancel',
             retryButton: 'Retry',
             deleteButton: 'Delete',
